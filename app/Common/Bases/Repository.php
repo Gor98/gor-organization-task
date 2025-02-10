@@ -255,38 +255,14 @@ abstract class Repository
     }
 
     /**
-     * return paginated collection sorted by given attribute using scopes
-     *
-     * @param array $filters
-     * @param array $relations
-     * @param array $meta
-     * @return LengthAwarePaginator
-     * @throws RepositoryException
-     */
-    public function sortPaginate(array $filters = [], array $relations = [], array $meta = []): LengthAwarePaginator
-    {
-        return $this->setMeta($meta)
-            ->setFilters($filters)
-            ->setTrashed($meta['trashed'] ?? false)
-            ->setSearch(getVal($meta, 'search'))
-            ->with(array_values($relations))
-            ->orderBy($this->meta['orderBy'], $this->meta['orderType'])
-            ->paginate($this->meta['perPage'], $this->meta['columns']);
-    }
-
-    /**
-     * @param array $filters
      * @param array $relations
      * @param array $meta
      * @return mixed
      * @throws RepositoryException
      */
-    public function get(array $filters = [], array $relations = [], array $meta = []): Collection
+    public function get(array $relations = [], array $meta = []): Collection
     {
         return $this->setMeta($meta)
-            ->setFilters($filters)
-            ->setTrashed($meta['trashed'] ?? false)
-            ->setSearch(getVal($meta, 'search'))
             ->with(array_values($relations))
             ->get($this->meta['columns']);
     }
