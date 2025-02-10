@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "15865a0d-ae5b-418f-b6be-dc883fda5a05",
+		"name": "organization",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All activites",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "some-secret-token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "0.0.0.0:8080/api/activities",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organisation show",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "some-secret-token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "0.0.0.0:8080/api/organizations/1?",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"organizations",
+						"1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All buildings",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "some-secret-token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "0.0.0.0:8080/api/buildings?",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"buildings"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organisation show by building",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "some-secret-token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "0.0.0.0:8080/api/organizations/by-building/11",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"organizations",
+						"by-building",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organisation by activites",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "some-secret-token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "0.0.0.0:8080/api/organizations/by-activity/7",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"organizations",
+						"by-activity",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organisation search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "some-secret-token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"nelly\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:8080/api/organizations/search",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"organizations",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organisation by location",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "some-secret-token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"latitude\": \"69.9324670\",\n    \"longitude\": \"-179.4137700\",\n    \"radius\": \"100000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:8080/api/organizations/by-location",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"organizations",
+						"by-location"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
