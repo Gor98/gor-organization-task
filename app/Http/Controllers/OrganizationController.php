@@ -50,7 +50,7 @@ class OrganizationController extends Controller
      */
     public function byActivity(int $activity_id): JsonResponse
     {
-        $organizations = $this->organizationServiceContract->findByBuilding($activity_id);
+        $organizations = $this->organizationServiceContract->findByActivity($activity_id);
 
         return APIResponse::successResponse(OrganizationResource::collection($organizations));
     }

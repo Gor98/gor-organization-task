@@ -48,7 +48,7 @@ class OrganizationService extends Service implements OrganizationServiceContract
         $activityIds = $this->activityRepository
             ->query()
             ->whereParentId($activity_id)
-            ->orWhereId($activity_id)
+            ->orWhere('id', $activity_id)
             ->pluck('id');
 
         return $this->organizationRepository->query()
