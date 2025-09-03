@@ -46,4 +46,23 @@ class APIResponse
             'error' => $response
         ], $status);
     }
+
+    /**
+     * @param $response
+     * @param string $message
+     * @param int $status
+     * @return JsonResponse
+     */
+    public static function collectionResponse(
+        $response = [],
+        string $message = 'Successful request.',
+        int $status = Response::HTTP_OK
+    ): JsonResponse {
+        return response()->json([
+            'message' => $message,
+            'status' =>  'success',
+            'data' => $response->all(),
+            'pagination' => CustomCollection::constructPaginate($response),
+        ], $status);
+    }
 }

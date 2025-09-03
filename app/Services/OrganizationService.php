@@ -8,6 +8,7 @@ use App\Contracts\OrganizationServiceContract;
 use App\Models\Organization;
 use App\Repositories\ActivityRepository;
 use App\Repositories\OrganizationRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class OrganizationService extends Service implements OrganizationServiceContract
@@ -45,37 +46,19 @@ class OrganizationService extends Service implements OrganizationServiceContract
      */
     public function findByActivity(int $activity_id): Collection
     {
-        $activityIds = $this->activityRepository
-            ->query()
-            ->whereParentId($activity_id)
-            ->orWhere('id', $activity_id)
-            ->pluck('id');
+        $activityIds = $this->activityRepository->getActivityIds($activity_id);
 
-        return $this->organizationRepository->query()
-            ->whereHas('activities', function ($query) use ($activityIds) {
-            $query->whereIn('activity_id', $activityIds);
-        })->get();
+        return $this->organizationRepository->findByActivity($activityIds);
     }
 
     /**
      * @param array $payload
-     * @return Collection
+     * @return LengthAwarePaginator
      * @throws RepositoryException
      */
-    public function findByLocation(array $payload): Collection
+    public function findByLocation(array $payload): LengthAwarePaginator
     {
-        $latitude = $payload['latitude'];
-        $longitude = $payload['longitude'];
-        $radius = $payload['radius'];
-
-        return $this->organizationRepository
-            ->query()
-            ->whereHas('building', function ($query) use ($latitude, $longitude, $radius) {
-            $query->whereRaw("(6371 * acos(cos(radians(?)) * cos(radians(latitude))
-            * cos(radians(longitude) - radians(?)) + sin(radians(?))
-            * sin(radians(latitude)))) < ?", [$latitude, $longitude, $latitude, $radius]
-            );
-        })->get();
+        return $this->organizationRepository->findByLocation($payload);
     }
 
     /**
@@ -85,6 +68,6 @@ class OrganizationService extends Service implements OrganizationServiceContract
      */
     public function findByName(string $name): Collection
     {
-        return $this->organizationRepository->query()->where('name', 'LIKE', "%{$name}%")->get();
+        return $this->organizationRepository->findByName($name);
     }
 }

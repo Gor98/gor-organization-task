@@ -1,0 +1,159 @@
+openapi: 3.0.0
+info:
+  title: Organization API
+  version: 1.0.0
+  description: Swagger documentation generated from Postman collection
+servers:
+- url: http://0.0.0.0:8080
+paths:
+  /api/activities:
+    get:
+      summary: All activities
+      parameters:
+      - name: X-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 'some-secret-token'
+      responses:
+        '200':
+          description: List of activities
+  /api/organizations/{id}:
+    get:
+      summary: Organization show
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: X-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 'some-secret-token'
+      responses:
+        '200':
+          description: Organization details
+  /api/buildings:
+    get:
+      summary: All buildings
+      responses:
+        '200':
+          description: List of buildings
+  /api/organizations/by-building/{id}:
+    get:
+      summary: Organization show by building
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 11
+      - name: X-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 'some-secret-token'
+      responses:
+        '200':
+          description: Organization by building
+  /api/organizations/by-activity/{id}:
+    get:
+      summary: Organization by activities
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: X-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 'some-secret-token'
+      responses:
+        '200':
+          description: Organization by activity
+  /api/organizations/search:
+    get:
+      summary: Organization search
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 'Rath'
+      - name: X-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 'some-secret-token'
+      requestBody:
+      responses:
+        '200':
+          description: Organization search results
+  /api/organizations/by-location:
+    get:
+      summary: Organization by location
+      parameters:
+      - name: X-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 'some-secret-token'
+      - name: latitude
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '69.932467'
+      - name: longitude
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '-179.4137700'
+      - name: radius
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '100000'
+      - name: orderType
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 'desc'
+      - name: orderBy
+        in: query
+        required: true
+        schema:
+          type: string
+          default: 'id'
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 5
+      responses:
+        '200':
+          description: Organizations by location

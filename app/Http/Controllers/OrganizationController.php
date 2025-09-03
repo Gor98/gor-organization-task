@@ -65,7 +65,7 @@ class OrganizationController extends Controller
     {
         $organizations = $this->organizationServiceContract->findByLocation($request->all());
 
-        return APIResponse::successResponse(OrganizationResource::collection($organizations));
+        return APIResponse::collectionResponse(OrganizationResource::collection($organizations));
     }
 
     /**

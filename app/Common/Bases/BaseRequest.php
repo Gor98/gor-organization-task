@@ -27,4 +27,9 @@ abstract class BaseRequest extends FormRequest
     {
         return implode($glue, $list);
     }
+
+    public function validationData(): array
+    {
+        return array_merge($this->route()?->parameters() ?? [], $this->all());
+    }
 }

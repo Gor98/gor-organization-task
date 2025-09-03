@@ -15,4 +15,5 @@ class SearchByNameRequest extends BaseRequest
             'name' => 'required|string',
         ];
     }
+
 }

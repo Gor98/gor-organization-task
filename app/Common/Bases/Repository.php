@@ -266,4 +266,21 @@ abstract class Repository
             ->with(array_values($relations))
             ->get($this->meta['columns']);
     }
+
+    /**
+     * return paginated collection sorted by given attribute using scopes
+     *
+     * @param array $filters
+     * @param array $relations
+     * @param array $meta
+     * @return LengthAwarePaginator
+     * @throws RepositoryException
+     */
+    public function sortPaginate(array $filters = [], array $relations = [], array $meta = []): LengthAwarePaginator
+    {
+        return $this->setMeta($meta)
+            ->with(array_values($relations))
+            ->orderBy($this->meta['orderBy'], $this->meta['orderType'])
+            ->paginate($this->meta['perPage'], $this->meta['columns']);
+    }
 }

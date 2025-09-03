@@ -3,6 +3,7 @@
 namespace App\Contracts;
 
 use App\Models\Organization;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 interface OrganizationServiceContract
@@ -13,7 +14,7 @@ interface OrganizationServiceContract
 
     public function findByActivity(int $activity_id): Collection;
 
-    public function findByLocation(array $payload): Collection;
+    public function findByLocation(array $payload): LengthAwarePaginator;
 
     public function findByName(string $name): Collection;
 }

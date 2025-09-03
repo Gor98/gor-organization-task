@@ -19,7 +19,7 @@ services:
             - api
 
     api-db:
-        image: mysql:5.7
+        image: mysql:8
         container_name: api-db
         environment:
             - MYSQL_DATABASE=${DB_DATABASE}
@@ -27,7 +27,7 @@ services:
             - MYSQL_USER=${DB_USERNAME}
             - MYSQL_PASSWORD=${DB_PASSWORD}
         volumes:
-            - .db-data:/var/lib/mysql
+            - ./docker/db-data:/var/lib/mysql
             - ./docker/core/mysql/init-mysql.js:/docker-entrypoint-initdb.d/init-mysql-js:ro
         ports:
             - "${DB_PORT}:${DB_MYSQL_CONTAINER_PORT}"
@@ -53,6 +53,17 @@ services:
                 aliases:
                     - api.loc
 
+    swagger-ui:
+        image: swaggerapi/swagger-ui
+        container_name: swagger-ui
+        ports:
+            - "${SWAGGER_PORT}:${SWAGGER_CONTAINER_PORT}"
+        volumes:
+            - ./docker/swagger:/swagger
+        environment:
+            SWAGGER_JSON: /swagger/swagger.yaml
+        networks:
+            - api
 networks:
     api:
         driver: bridge
