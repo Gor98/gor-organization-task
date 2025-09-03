@@ -19,7 +19,7 @@ cp .env.example .env
 
 ### 3. Start Docker Containers
 ```sh
-docker-compose up
+docker compose up
 ```
 
 ### 4. Set Permissions
@@ -30,7 +30,7 @@ sudo chmod -R 775 storage bootstrap/cache
 
 ### 5. Access the API Container
 ```sh
-docker-compose exec api-core bash
+docker compose exec api-core bash
 ```
 
 ### 6. Run Database Migrations
