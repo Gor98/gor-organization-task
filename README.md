@@ -45,11 +45,11 @@ php artisan db:seed
 
 ## API Testing
 A Postman collection is included in the repository for testing the API endpoints. Import the collection into Postman to test the available routes easily.
-####**organization.postman_collection.json**
+**organization.postman_collection.json**
 
-## SWAGGER
+## Swagger Docs
 To see swagger-ui docs locate to this url
-####**http://0.0.0.0:1414**
+**http://0.0.0.0:1414**
 
 ## Additional Notes
 - Ensure Docker and Docker Compose are installed on your system.
